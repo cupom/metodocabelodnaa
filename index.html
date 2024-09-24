@@ -20,24 +20,38 @@
         }
 
         h1 {
+            margin-top: -15px;
             font-size: 70px;
             color: #fff;
             margin-bottom: 20px;
             font-family: 'Arial Black', sans-serif;
             font-weight: bold;
+            position: relative;
+            z-index: 10;
         }
 
         .highlight {
             color: #b04bcd;
         }
 
+        @media (max-width: 850px) {
+            h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .break {
+                display: block;
+                margin-bottom: -10px;
+            }
+        }
+
         .rectangle-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             max-width: 100%;
-            background-color: transparent;
             margin-bottom: 20px;
         }
 
@@ -57,6 +71,20 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('capa.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+            transition: opacity 1s ease;
         }
 
         .play-button {
@@ -67,63 +95,137 @@
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: oscillate 1.3s ease-in-out infinite; /* Animação de oscilação mais suave */
         }
 
-        .play-button::before {
-            content: '';
-            display: block;
+        @keyframes oscillate {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); } /* Reduzir a escala */
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .triangle {
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 10px 0 10px 15px; /* Triângulo menor */
+            border-width: 14px 0 14px 20px; /* Triângulo para o play */
             border-color: transparent transparent transparent white;
+            position: relative; /* Mantém o triângulo em posição fixa */
         }
 
-        .description {
-            font-size: 1.2em;
+        .play-button.playing .triangle {
+            display: none; /* Esconde o triângulo quando o botão está na classe 'playing' */
+        }
+
+        .play-button.playing .pause-icon {
+            display: block;
+            position: absolute;
+            width: 7px;
+            height: 30px;
+            background-color: white;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .play-button.playing .pause-icon:nth-of-type(1) {
+            left: calc(50% - 11px);
+        }
+
+        .play-button.playing .pause-icon:nth-of-type(2) {
+            left: calc(50% + 5px);
+        }
+
+        .footer-info {
+            font-size: 0.8em;
             color: #fff;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .info-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .cont2 {
+            font-size: 17px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .cont3 {
+            font-size: 15px;
+            color: #b6b6b6;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .bloco {
             margin-bottom: 20px;
         }
 
-        #buyButton {
+        .bloco p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .bloco p b {
+            color: #aaaaaa;
+        }
+
+        .container-prod-unique {
             display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: px;
+        }
+
+        .bold-unique {
+            font-weight: bold;
+        }
+
+        .offer-message-unique {
+            margin-top: 15px;
+            color: #ffcc00;
+            font-size: 13px;
+        }
+
+        #buyButtonUnique {
             padding: 15px 30px;
-            background-color: #28a745;
+            background-color: #218838;
             color: white;
             text-transform: uppercase;
             border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
+            border-radius: 50px;
+            font-size: 15px;
             cursor: pointer;
             margin-top: 20px;
+            animation: glow-unique 1.5s infinite;
         }
 
-        #buyButton:hover {
+        #buyButtonUnique:hover {
             background-color: #218838;
         }
 
-        @media (max-width: 850px) {
-            h1 {
-                font-size: 60px;
-                margin-bottom: -1px;
+        @keyframes glow-unique {
+            0% {
+                box-shadow: 0 0 3px #28a745, 0 0 5px #28a745, 0 0 8px #28a745;
             }
-
-            .break {
-                display: block;
-                margin-bottom: -15px;
+            50% {
+                box-shadow: 0 0 5px #28a745, 0 0 10px #28a745, 0 0 15px #28a745;
             }
-        }
-
-        @media (max-width: 570px) {
-            .description {
-                margin-top: -7px;
-                font-size: 14px;
+            100% {
+                box-shadow: 0 0 3px #28a745, 0 0 5px #28a745, 0 0 8px #28a745;
             }
         }
     </style>
@@ -131,42 +233,78 @@
 <body>
 
     <div class="container">
-        <h1>Método<span class="break"> </span>Cabelo <span class="highlight">DNA!</span></h1>
-
-        <!-- Retângulo com vídeo de fundo -->
+        <h1>O SEGREDO PARA<span class="break"> </span><span class="highlight">RESSUSCITAR</span> OS <span class="highlight">FIOS!</span></h1>
+        
         <div class="rectangle-container">
             <div class="rectangle">
-                <!-- Vídeo como fundo -->
+                <div class="thumbnail"></div>
                 <video id="backgroundVideo" muted loop playsinline class="background-video" poster="capa.jpg">
                     <source src="video1.mp4" type="video/mp4">
                     Seu navegador não suporta o vídeo.
                 </video>
-                <button id="playButton" class="play-button"></button>
+
+                <button id="playButton" class="play-button">
+                    <div class="pause-icon"></div>
+                    <div class="pause-icon"></div>
+                    <div class="triangle"></div>
+                </button>
             </div>
         </div>
+        <div class="container-prod-unique">
+            <button id="buyButtonUnique" class="bold-unique" onclick="window.location.href='https://google.com/'">Garantir meu metodo cabelo dna</button>
+            <div class="offer-message-unique">Oferta válida por tempo limitado. Aproveite!</div>
+       </div>
 
-        <p class="description">
-            Quer descobrir o <strong>segredo</strong> para o <strong>cabelo dos seus sonhos</strong>? Aplique o <strong>Método Cabelo DNA</strong> e transforme seus <strong>fios</strong>!
-        </p>
+        <div class="info-container">
+            <div class="cont2">Os módulos abordados</div>
+            <div class="bloco">
+                <p><b>Recuperação e Restauração Capilar:</b> Ver seus fios afinando e perdendo vida é angustiante. Cada novo dia parece um retrocesso, e a autoestima vai junto. No <strong>Método Cabelo DNA</strong>, você vai descobrir como restaurar a força e vitalidade do seu cabelo, trazendo de volta a confiança que você merece.</p>
+            </div>
 
-        <button id="buyButton">Comprar Agora</button>
+            <div class="bloco">
+                <p><b>Fortalecimento e Prevenção da Quebra:</b> Após restaurar seus fios, o medo de pentear o cabelo e vê-lo quebradiço continua te preocupando. No <strong>Método Cabelo DNA</strong>, você aprenderá a fortalecer seus fios de maneira duradoura, garantindo que eles permaneçam saudáveis e livres da fragilidade.</p>
+            </div>
+
+            <div class="bloco">
+                <p><b>Manutenção e Cuidados de Longo Prazo:</b> Com seus fios fortalecidos, o desafio é manter essa saúde e evitar que o afinamento volte. O <strong>Método Cabelo DNA</strong> vai te ensinar um plano prático de cuidados contínuos, para que seu cabelo se mantenha forte e bonito no longo prazo, sem preocupações constantes.</p>
+            </div>
+            <div class="cont3">Mais informações no vídeo acima...</div>
+        </div>
+
+        <div class="footer-info">
+            <p><strong>Garantia de Satisfação de 60 Dias</strong></p>
+            <p>© 2023 — 2024 Método Cabelo DNA</p>
+        </div>
     </div>
 
     <script>
         const playButton = document.getElementById('playButton');
         const video = document.getElementById('backgroundVideo');
+        const thumbnail = document.querySelector('.thumbnail');
+        const containerProdUnique = document.querySelector('.container-prod-unique');
 
         playButton.addEventListener('click', () => {
             if (video.paused) {
                 video.play();
-                playButton.style.display = 'none';
+                video.style.opacity = '1';
+                thumbnail.style.opacity = '0';
+                playButton.classList.add('playing');
+
+                setTimeout(() => {
+                    playButton.style.display = 'none';
+                }, 300);
+            } else {
+                video.pause();
+                thumbnail.style.opacity = '1';
+                playButton.classList.remove('playing');
             }
         });
 
-        video.addEventListener('pause', () => {
-            playButton.style.display = 'flex';
+        video.addEventListener('timeupdate', function() {
+            if (video.currentTime >= 30) {
+                containerProdUnique.style.display = 'block'; // Mostra a seção de produtos
+            }
         });
     </script>
-
 </body>
 </html>

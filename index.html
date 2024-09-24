@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Método Cabelo DNA!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +53,7 @@
             height: 0;
             overflow: hidden;
             max-width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
         .rectangle {
@@ -228,6 +229,50 @@
                 box-shadow: 0 0 3px #28a745, 0 0 5px #28a745, 0 0 8px #28a745;
             }
         }
+        
+        .payment-method {
+            background: #121212;
+            border: 1px solid #121212;
+            border-radius: 8px;
+            height: 30px; /* Altura do balão ajustada para dar mais espaço */
+            margin: 10px 0;
+            display: flex;
+            align-items: center; /* Alinha os ícones verticalmente */
+            justify-content: center; /* Centraliza o conteúdo do balão */
+            padding: 0 15px; /* Adiciona um padding lateral para evitar que os ícones fiquem colados nas bordas */
+        }
+
+        .payment-icons {
+            display: flex; /* Alinha os ícones horizontalmente */
+            justify-content: space-between; /* Espaço igual entre os ícones */
+            width: 100%; /* Faz com que a div ocupe toda a largura do balão */
+        }
+
+        .payment-icon {
+            font-size: 20px; /* Tamanho dos ícones ajustado para 20px */
+            color: #b04bcd;
+            flex: 1; /* Faz com que cada ícone ocupe espaço igual */
+            text-align: center; /* Centraliza o ícone dentro da coluna */
+        }
+        
+        .losango {
+            width: 15px; /* Largura do losango */
+            height: 15px; /* Altura do losango */
+            background-color: #b04bcd;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px; /* Margem lateral */
+            margin-top: 3px; /* Ajuste para centralizar verticalmente */
+        }
+
+        .losango span {
+            transform: rotate(-45deg);
+            color: #121212; /* Cor do texto */
+            font-size: 15px; /* Tamanho do texto */
+            display: flex; /* Para centralizar o texto */
+        }
     </style>
 </head>
 <body>
@@ -248,6 +293,18 @@
                     <div class="pause-icon"></div>
                     <div class="triangle"></div>
                 </button>
+            </div>
+        </div>
+        <div class="payment-method">
+            <div class="payment-icons">
+                <i class="fas fa-credit-card payment-icon"></i>
+                <i class="fas fa-file-invoice payment-icon"></i>
+                <i class="fas fa-university payment-icon"></i>
+                <div class="losango">
+                    <span>X</span>
+                </div>
+                <i class="fas fa-wallet payment-icon"></i>
+                <i class="fas fa-money-bill-wave payment-icon"></i>
             </div>
         </div>
         <div class="container-prod-unique">

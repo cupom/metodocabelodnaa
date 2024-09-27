@@ -465,6 +465,13 @@
                 localStorage.setItem('videoWatched', 'true');
             }
     
+            // Função para resetar o progresso do vídeo (para testes)
+            function resetVideoProgress() {
+                localStorage.removeItem('videoWatched');
+                containerProdUnique.style.display = 'none';
+                alert('Progresso do vídeo resetado. Assista novamente para ver o botão de compra aparecer.');
+            }
+    
             // Verifica o progresso ao carregar a página
             window.onload = checkVideoProgress;
     
@@ -482,33 +489,14 @@
                 }
             }
     
-            // Pause o vídeo e exiba o botão de play se o usuário sair da aba
-            document.addEventListener('visibilitychange', function() {
-                if (document.visibilityState === 'hidden') {
-                    video.pause();
-                    playPauseBtn.classList.remove('hidden');
-                    playPauseBtn.classList.remove('playing');
-                }
-            });
-    
             video.addEventListener('timeupdate', function() {
                 if (video.currentTime >= 30) {
                     containerProdUnique.style.display = 'block';
-                    saveVideoProgress(); // Salva a informação no LocalStorage
+                    saveVideoProgress(); // Salva no LocalStorage
                 }
             });
     
-            video.addEventListener('pause', function() {
-                playPauseBtn.classList.remove('hidden');
-                playPauseBtn.classList.remove('playing');
-            });
-    
             video.addEventListener('ended', function() {
-                video.pause();
-                video.currentTime = video.duration;
-                playPauseBtn.style.display = 'none';
-    
-                // Mostra a palavra "Fim" e a camada escurecida
                 endMessage.style.opacity = 1;
                 darkOverlay.style.opacity = 1;
             });

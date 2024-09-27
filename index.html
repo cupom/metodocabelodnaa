@@ -366,7 +366,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 48px;
+            font-size: 20px;
             color: #fff;
             opacity: 0;
             transition: opacity 1s ease;
@@ -391,7 +391,7 @@
                 <button class="play-button" id="playPauseBtn" onclick="togglePlayPause()"></button>
             </div>
 
-            <div class="end-message" id="endMessage">Fim</div>
+            <div class="end-message" id="endMessage">Garanta seu acesso antes que esgote!</div>
             <div class="dark-overlay" id="darkOverlay"></div> <!-- Camada escurecida -->
         </div>
 
@@ -424,6 +424,9 @@
             </div>
             <div class="cont3">Mais informações no vídeo acima...</div>
         </div>
+
+        <!-- Botão para resetar o progresso do vídeo -->
+        <button id="resetBtn" onclick="resetVideoProgress()">Resetar Progresso</button>
 
         <div class="footer-info">
             <p><strong>Garantia de Satisfação de 60 Dias</strong></p>
